@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
+
+* {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #10371e;
+    width: 100%;
+    z-index: 999;
+}
+
+.navigation a {
+    font-size: 32px;
+    text-decoration: none;
+    color: #fff;
+    font-family: "Metal Mania", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    margin: 1rem auto;
+}
+
+.hero {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom, #1BD8C8, #00993B);
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* ── Carousel anchor: pinned exactly to the bottom-right corner ── */
+.carousel {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+}
+
+/* ── Cans: ~50% of screen — JS overrides width/height at runtime ── */
+.can {
+    position: absolute;
+    width: 1500px;
+    height: auto;
+    object-fit: contain;
+    opacity: 0;
+    pointer-events: none;
+    will-change: left, top, opacity;
+}
+
+/* ── Arrow buttons — vertically centred on each side ── */
+.left,
+.right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    color: #fff;
+    font-size: 22px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s;
+    z-index: 10;
+}
+
+.left  { left: 20px; }
+.right { right: 20px; }
+
+.left:hover,
+.right:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.left:active,
+.right:active {
+    transform: translateY(-50%) scale(0.95);
+}

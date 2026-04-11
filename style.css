@@ -1,0 +1,1824 @@
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanalei+Fill&family=Metal+Mania&family=New+Rocker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanalei+Fill&family=Metal+Mania&family=Moulpali&family=New+Rocker&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
+
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: linear-gradient(to bottom, #1BD8C8, #00993B);
+}
+
+
+/* ── Navigation ──────────────────────────────────────────────────────────── */
+.navigation {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(17, 53, 3);
+    /* same hue, now lets blur show */
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    /* Safari */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.22);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navigation a {
+    font-size: 28px;
+    text-decoration: none;
+    color: #fff;
+    font-family: "Metal Mania", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    margin: 1rem auto;
+    letter-spacing: 0.04em;
+    transition: opacity 0.2s;
+}
+
+
+.navigation a:hover {
+    opacity: 0.7;
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────────── */
+.hero {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom, #1BD8C8, #00993B);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.9s ease;
+    scroll-snap-align: start;
+    /* ← smooth bg colour crossfade */
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   THEME LAYER
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.theme-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ── Fruit layer ─────────────────────────────────────────────────────────── */
+.fruit-layer {
+    position: absolute;
+    inset: 0;
+}
+
+.fruit-item {
+    position: absolute;
+    object-fit: contain;
+    /* Fruits start rotated & invisible, land on their natural angle */
+    opacity: 0;
+    transform: rotate(calc(var(--rotate, 0deg) + 40deg)) scale(0.6);
+    filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.35));
+    transition: none;
+    /* animation via class, not transition */
+    will-change: transform, opacity;
+}
+
+/* When .fruit-in is added, trigger the fly-in keyframe */
+.fruit-item.fruit-in {
+    animation: fruitFlyIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    /* animation-delay is set inline per fruit */
+}
+
+@keyframes fruitFlyIn {
+    from {
+        opacity: 0;
+        transform: rotate(calc(var(--rotate, 0deg) + 40deg)) scale(0.5) translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: rotate(var(--rotate, 0deg)) scale(1) translateY(0);
+    }
+}
+
+/* Subtle float loop once landed */
+.fruit-item.fruit-in {
+    animation:
+        fruitFlyIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+        fruitFloat 5s ease-in-out calc(var(--delay, 0ms) + 0.7s) infinite;
+}
+
+@keyframes fruitFloat {
+
+    0%,
+    100% {
+        transform: rotate(var(--rotate, 0deg)) translateY(0);
+    }
+
+    50% {
+        transform: rotate(var(--rotate, 0deg)) translateY(-12px);
+    }
+}
+
+/* ── Text layer ──────────────────────────────────────────────────────────── */
+.text-layer {
+    position: absolute;
+    left: 7%;
+    top: 50%;
+    transform: translateY(-45%);
+    max-width: 480px;
+    --accent: #fff;
+}
+
+/* Hidden state — all children shifted down + invisible */
+.text-layer .can-label,
+.text-layer .can-title,
+.text-layer .can-tagline,
+.text-layer .can-description {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+/* Visible state — staggered per element */
+.text-layer.theme-visible .can-label {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.05s;
+}
+
+.text-layer.theme-visible .can-title {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.15s;
+}
+
+.text-layer.theme-visible .can-tagline {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.28s;
+}
+
+.text-layer.theme-visible .can-description {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.38s;
+}
+
+/* Label pill */
+.can-label {
+    display: inline-block;
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+}
+
+/* Big title */
+.can-title {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(72px, 8vw, 128px);
+    line-height: 0.92;
+    color: #fff;
+    letter-spacing: -0.01em;
+    text-shadow: 0 4px 40px rgba(0, 0, 0, 0.3);
+    margin-bottom: 22px;
+}
+
+/* Tagline */
+.can-tagline {
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(16px, 1.5vw, 20px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 20px;
+}
+
+/* Description */
+.can-description {
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(14px, 1.1vw, 17px);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CAROUSEL
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.carousel {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    z-index: 3;
+}
+
+.can {
+    position: absolute;
+    width: 1500px;
+    height: auto;
+    object-fit: contain;
+    opacity: 0;
+    pointer-events: none;
+    will-change: left, top, opacity;
+    filter: drop-shadow(0 32px 64px rgba(0, 0, 0, 0.4));
+}
+
+/* ── Arrow buttons ───────────────────────────────────────────────────────── */
+.left,
+.right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    color: #fff;
+    font-size: 22px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, transform 0.2s;
+    z-index: 50;
+}
+
+.left {
+    left: 20px;
+}
+
+.right {
+    right: 20px;
+}
+
+.left:hover,
+.right:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.left:active,
+.right:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.legacy {
+    width: 100%;
+    height: 100vh;
+    padding-bottom: 5rem;
+    background: linear-gradient(to bottom, #1BD8C8, #00993B);
+
+    scroll-snap-align: start;
+}
+
+main {
+    /* padding-top: 60px; */
+    background: linear-gradient(to bottom, #1BD8C8, #00993B);
+    transition: background 0.9s ease;
+}
+
+.legacy-title {
+    font-family: "New Rocker", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    margin: 2rem 4rem;
+    padding-top: 5rem;
+    text-shadow: 2px 2px 0px #004d3d;
+    font-size: clamp(24px, 3vw, 36px);
+
+}
+
+.legacy-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0%;
+    padding-bottom: 0%;
+}
+
+.left-container {
+    width: 60%;
+    height: auto;
+    margin: 2rem 1rem 1rem 4rem;
+    border: 2px solid transparent;
+    /* invisible border — keeps layout identical */
+    border-radius: 36px;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.18),
+        0 2px 8px rgba(0, 0, 0, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.left-container-header {
+    font-family: "Moulpali", sans-serif;
+    font-size: 23.5px;
+    font-weight: 400;
+    font-style: normal;
+    margin: 1rem auto;
+}
+
+.left-container-text {
+    font-size: 23.5px;
+
+}
+
+.inner-left {
+    padding: 1rem;
+    font-family: "Moulpali", sans-serif;
+    font-weight: 400;
+
+
+}
+
+li {
+    font-size: 23.5px;
+    margin: 0rem 4rem;
+}
+
+.right-container {
+    width: 40%;
+    height: auto;
+    margin: 0rem 4rem 0rem 1rem;
+    /* border: 2px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-bottom: 6rem; */
+    position: static;
+}
+
+.right-container-circle {
+    width: 35vw;
+
+    /* Aspect-ratio ensures height always equals width */
+    aspect-ratio: 1 / 1;
+
+    /* border-radius 50% turns the square into a circle */
+    border-radius: 50%;
+
+    /* Background styling based on your image palette */
+    background: radial-gradient(circle, #20c997, #00816a);
+
+    /* Center it on the screen */
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.circle-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.right-container-circle-can {
+    position: absolute;
+    width: 160%;
+    transform: translate(-15%, -5%);
+
+
+}
+
+.right-container-title {
+    font-family: "Metal Mania", system-ui;
+    font-weight: 400;
+    position: static;
+    /* back in normal flow, stacks below circle */
+    font-size: clamp(28px, 3.5vw, 52px);
+    color: #fff;
+    text-align: center;
+    /* Wide multi-layer glow — correct text-shadow syntax: x y blur color */
+    text-shadow:
+        0 0 18px rgba(255, 255, 255, 0.419),
+        0 0 55px rgba(0, 0, 0, 0.75),
+        0 0 100px rgba(0, 180, 100, 0.5);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SECTION 3 — THANDA HOUSE CAROUSEL
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.thanda-house {
+    width: 100%;
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    padding: 2.8rem 4rem 2rem;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #1BD8C8, #00993B);
+    position: relative;
+}
+
+/* Subtle background texture */
+.thanda-house::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(27, 216, 200, 0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 80%, rgba(0, 153, 59, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* ── Header row ──────────────────────────────────────────────────────────── */
+.th-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    margin-top: 3rem;
+}
+
+/* Invisible spacer mirrors the arrows width so title is truly centred */
+.th-header-spacer {
+    flex-shrink: 0;
+    width: calc(46px * 2 + 0.75rem);
+
+
+    /* 2 buttons + gap between them */
+}
+
+.th-title {
+    font-family: "Metal Mania", system-ui;
+    font-size: clamp(30px, 4vw, 54px);
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 0.05em;
+    text-align: center;
+    flex: 1;
+    text-shadow:
+        0 0 30px rgba(27, 216, 200, 0.5),
+        0 0 70px rgba(27, 216, 200, 0.2);
+}
+
+/* ── Arrow buttons ───────────────────────────────────────────────────────── */
+.th-arrows {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.th-arrow {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-size: 20px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.th-arrow:hover {
+    background: rgba(27, 216, 200, 0.2);
+    border-color: rgba(27, 216, 200, 0.7);
+    transform: scale(1.1);
+}
+
+.th-arrow:active {
+    transform: scale(0.93);
+}
+
+/* ── Carousel viewport + track ───────────────────────────────────────────── */
+.th-viewport {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    /* Fade edges for a cinematic depth effect */
+    /* mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%); */
+}
+
+.th-track {
+    display: flex;
+    height: 100%;
+    align-items: stretch;
+    gap: 1.5rem;
+    will-change: transform;
+    /* transition is toggled via JS */
+}
+
+/* ── Individual card ─────────────────────────────────────────────────────── */
+/* ── Card ────────────────────────────────────────────────────────────────── */
+.th-card {
+    flex: 0 0 calc((100vw - 8rem - 3rem) / 3);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 40px;
+
+    /* background uses rgba — no opacity property so the can is unaffected */
+    background: linear-gradient(135deg,
+            rgba(217, 217, 217, 0.55) 0%,
+            rgba(115, 115, 115, 0.45) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(18px) saturate(130%);
+    -webkit-backdrop-filter: blur(18px) saturate(130%);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+    transition: border-color 0.45s ease, box-shadow 0.45s ease, background 0.45s ease;
+}
+
+.th-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: none;
+    pointer-events: none;
+}
+
+.th-card:hover {
+    background: linear-gradient(135deg,
+            rgba(245, 245, 245, 0.72) 0%,
+            rgba(160, 160, 160, 0.60) 100%);
+    border-color: rgba(27, 216, 200, 0.45);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.22);
+}
+
+/* ── Can — 80% of card, no scale stuck in base state ───────────────────── */
+.th-card-can {
+    width: 80%;
+    /* fills 80% of card width */
+    height: 80%;
+    /* fills 80% of card height */
+    object-fit: contain;
+    filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.45));
+    transition:
+        transform 0.52s cubic-bezier(0.34, 1.2, 0.64, 1),
+        filter 0.52s ease;
+    will-change: transform;
+    pointer-events: none;
+    user-select: none;
+    /* NO transform here — base state is full size */
+}
+
+.th-card:hover .th-card-can {
+    transform: scale(0.62) translateY(-14%);
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.28));
+}
+
+
+
+/* ── Button — hidden by default, slides up on hover ─────────────────────── */
+.th-card-btn {
+    position: absolute;
+    bottom: 1.8rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(22px);
+    opacity: 0;
+
+    padding: 0.65rem 1.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1.5px solid rgba(255, 255, 255, 0.32);
+    border-radius: 100px;
+    color: #fff;
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    transition:
+        opacity 0.38s ease,
+        transform 0.38s ease,
+        background 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.th-card-btn {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Button's own hover — uses the per-card accent colour set as a CSS var */
+.th-card-btn:hover {
+    background: rgba(var(--accent-rgb), 0.22);
+    border-color: rgba(var(--accent-rgb), 0.75);
+    box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.35);
+}
+
+
+
+/* ── Pagination dots ─────────────────────────────────────────────────────── */
+.th-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    padding-top: 1.6rem;
+    position: relative;
+    z-index: 1;
+}
+
+.th-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.th-dot.active {
+    background: #1BD8C8;
+    border-color: #1BD8C8;
+    transform: scale(1.5);
+    box-shadow: 0 0 10px rgba(27, 216, 200, 0.7);
+}
+
+.th-shooping-cart {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SECTION 4 — GET IN TOUCH
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.contact-section {
+    width: 100%;
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    padding: 2rem 4rem;
+    background: linear-gradient(to bottom, #1BD8C8, #00993B);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 55% at 50% 65%,
+            rgba(255, 255, 255, 0.10) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* ── Title ───────────────────────────────────────────────────────────────── */
+.contact-title {
+    font-family: "Metal Mania", system-ui;
+    font-size: clamp(32px, 4.5vw, 62px);
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 0.06em;
+    text-align: center;
+    text-shadow: 0 0 28px rgba(255, 255, 255, 0.4), 0 2px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+/* ══ Joint wrapper ══════════════════════════════════════════════════════════
+   Two separated cards with a glowing shine strip between them
+   ══════════════════════════════════════════════════════════════════════════ */
+.contact-joint {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    gap: 0;
+    /* cards + shine strip are flush, no gap */
+}
+
+/* ── Shared card base ────────────────────────────────────────────────────── */
+.contact-card {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    position: relative;
+    overflow: visible;
+    /* popups need to escape the card boundary */
+}
+
+/* ── Left card ───────────────────────────────────────────────────────────── */
+.contact-card--left {
+    width: clamp(280px, 34vw, 460px);
+    padding: 3rem 2.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-radius: 40px;
+    border-right: none;
+    /* Left card shadow — pulls away from center */
+    box-shadow:
+        -12px 0 40px rgba(0, 0, 0, 0.18),
+        0 16px 50px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* ── Shine strip between the two cards ──────────────────────────────────── */
+.contact-joint-shine {
+    width: 3px;
+
+    flex-shrink: 0;
+    align-self: stretch;
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(255, 255, 255, 0.12) 15%,
+            rgba(255, 255, 255, 0.85) 35%,
+            rgba(255, 255, 255, 1.00) 50%,
+            rgba(255, 255, 255, 0.85) 65%,
+            rgba(255, 255, 255, 0.12) 85%,
+            transparent 100%);
+    box-shadow:
+        0 0 10px 3px rgba(255, 255, 255, 0.55),
+        0 0 28px 6px rgba(255, 255, 255, 0.20);
+    z-index: 2;
+}
+
+/* ── Right card ──────────────────────────────────────────────────────────── */
+.contact-card--right {
+    width: clamp(280px, 34vw, 460px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 40px;
+    border-left: none;
+    /* Right card shadow — pulls away from center */
+    box-shadow:
+        12px 0 40px rgba(0, 0, 0, 0.18),
+        0 16px 50px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+
+
+/* ── Contact list ────────────────────────────────────────────────────────── */
+.contact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+
+    gap: 0;
+}
+
+/* ── Each row ────────────────────────────────────────────────────────────── */
+.contact-item {
+    display: flex;
+
+    align-items: center;
+    gap: 1rem;
+    padding: 0.95rem 1rem;
+    border-radius: 14px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.22s ease;
+    /* clip popup inside item bounds */
+    overflow: visible;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.contact-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.contact-item-text {
+    flex: 1;
+}
+
+.contact-item-heading {
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 2px;
+}
+
+.contact-item-value {
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(13px, 1.2vw, 16px);
+    font-weight: 300;
+    color: #fff;
+}
+
+/* ══ Popup ══════════════════════════════════════════════════════════════════
+   Slides up from the row when clicked
+   ══════════════════════════════════════════════════════════════════════════ */
+.contact-popup {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(100% + 8px);
+    /* floats just above the row */
+    background: rgba(10, 30, 15, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 18px;
+    padding: 1.2rem 1.4rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 100;
+    /* Hidden state */
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.28s ease, transform 0.28s ease;
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Tiny arrow pointing down toward the row */
+.contact-popup::after {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 1.8rem;
+    width: 13px;
+    height: 13px;
+    background: rgba(10, 30, 15, 0.88);
+    border-right: 1px solid rgba(255, 255, 255, 0.22);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    transform: rotate(45deg);
+}
+
+/* Open state — toggled by JS */
+.contact-item.popup-open .contact-popup {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.contact-popup-close {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.8rem;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: color 0.15s;
+    line-height: 1;
+}
+
+.contact-popup-close:hover {
+    color: #fff;
+}
+
+.contact-popup-label {
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.contact-popup-value {
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(15px, 1.4vw, 19px);
+    font-weight: 300;
+    color: #fff;
+    line-height: 1.5;
+}
+
+.contact-popup-btn {
+    display: inline-block;
+    margin-top: 0.3rem;
+    padding: 0.45rem 1.2rem;
+    background: rgba(27, 216, 200, 0.18);
+    border: 1px solid rgba(27, 216, 200, 0.55);
+    border-radius: 100px;
+    color: #1BD8C8;
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s;
+    align-self: flex-start;
+}
+
+.contact-popup-btn:hover {
+    background: rgba(27, 216, 200, 0.32);
+    box-shadow: 0 0 16px rgba(27, 216, 200, 0.4);
+}
+
+/* Social links inside popup */
+.contact-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.2rem;
+}
+
+.contact-social-link {
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(13px, 1.2vw, 16px);
+    font-weight: 300;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    padding-bottom: 1px;
+    align-self: flex-start;
+    transition: border-color 0.2s, opacity 0.2s;
+}
+
+.contact-social-link:hover {
+    border-color: #fff;
+    opacity: 0.7;
+}
+
+/* ── Can image ───────────────────────────────────────────────────────────── */
+.contact-can {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    filter: drop-shadow(-12px 0 40px rgba(0, 0, 0, 0.28));
+    transform: translateX(5%);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.site-footer {
+    width: 100%;
+    background: #050f07;
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 5vw 0;
+}
+
+/* ── Ghost can in background ─────────────────────────────────────────────── */
+.footer-bg-can {
+    position: absolute;
+    right: -4%;
+    bottom: -5%;
+    width: clamp(260px, 28vw, 440px);
+    opacity: 0.07;
+    pointer-events: none;
+    user-select: none;
+    filter: blur(1px);
+    transform: rotate(12deg);
+}
+
+/* ── Main grid ───────────────────────────────────────────────────────────── */
+.footer-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 3.5rem;
+}
+
+/* ── Brand column ────────────────────────────────────────────────────────── */
+.footer-brand {
+    flex: 0 0 clamp(180px, 22vw, 280px);
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding-right: 3vw;
+}
+
+.footer-logo {
+    font-family: "Metal Mania", system-ui;
+    font-size: clamp(36px, 4vw, 56px);
+    color: #fff;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-shadow:
+        0 0 24px rgba(27, 216, 200, 0.55),
+        0 0 60px rgba(27, 216, 200, 0.20);
+}
+
+.footer-tagline {
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(12px, 1vw, 14px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.40);
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+}
+
+/* Social icon row */
+.footer-social-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.4rem;
+}
+
+.footer-social {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.50);
+    text-decoration: none;
+    transition: color 0.22s, border-color 0.22s, box-shadow 0.22s, background 0.22s;
+}
+
+.footer-social:hover {
+    color: #1BD8C8;
+    border-color: rgba(27, 216, 200, 0.55);
+    background: rgba(27, 216, 200, 0.08);
+    box-shadow: 0 0 14px rgba(27, 216, 200, 0.28);
+}
+
+/* ── Vertical divider ────────────────────────────────────────────────────── */
+.footer-divider--v {
+    width: 1px;
+    align-self: stretch;
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(255, 255, 255, 0.14) 20%,
+            rgba(255, 255, 255, 0.14) 80%,
+            transparent 100%);
+    flex-shrink: 0;
+    margin: 0 3vw;
+}
+
+/* ── Generic link column ─────────────────────────────────────────────────── */
+.footer-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-right: 1rem;
+}
+
+.footer-col--wide {
+    flex: 1.4;
+}
+
+.footer-col-heading {
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 0.4rem;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.footer-links a {
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(13px, 1.1vw, 15px);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.60);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s, letter-spacing 0.2s;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    letter-spacing: 0.05em;
+}
+
+/* ── Newsletter ──────────────────────────────────────────────────────────── */
+.footer-newsletter-sub {
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(12px, 1vw, 13px);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.38);
+    line-height: 1.65;
+    margin-top: -0.3rem;
+}
+
+.footer-newsletter {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 100px;
+    overflow: hidden;
+    margin-top: 0.4rem;
+    transition: border-color 0.22s, box-shadow 0.22s;
+}
+
+.footer-newsletter:focus-within {
+    border-color: rgba(27, 216, 200, 0.50);
+    box-shadow: 0 0 18px rgba(27, 216, 200, 0.15);
+}
+
+.footer-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0.7rem 1.2rem;
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 0.03em;
+}
+
+.footer-input::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.footer-submit {
+    width: 38px;
+    height: 38px;
+    margin: 3px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #1BD8C8, #00993B);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.footer-submit:hover {
+    opacity: 0.85;
+    transform: scale(1.08);
+    box-shadow: 0 0 18px rgba(27, 216, 200, 0.45);
+}
+
+/* ── Horizontal divider ──────────────────────────────────────────────────── */
+.footer-divider--h {
+    height: 1px;
+    background: linear-gradient(to right,
+            transparent 0%,
+            rgba(255, 255, 255, 0.12) 20%,
+            rgba(255, 255, 255, 0.12) 80%,
+            transparent 100%);
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Bottom bar ──────────────────────────────────────────────────────────── */
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 0 1.8rem;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.footer-legal {
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.04em;
+}
+
+.footer-bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-bottom-links a {
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.30);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+}
+
+.footer-bottom-links a:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.footer-bottom-links span {
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 11px;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   NAV CART BUTTON
+   ══════════════════════════════════════════════════════════════════════════ */
+.nav-cart-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1.5px solid rgba(255, 255, 255, 0.30);
+    border-radius: 100px;
+    color: #fff;
+    font-family: "Metal Mania", system-ui;
+    font-size: 20px;
+    letter-spacing: 0.04em;
+    padding: 0.3rem 1rem 0.3rem 0.7rem;
+    cursor: pointer;
+    position: relative;
+    margin: 0.6rem 0;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.nav-cart-btn:hover {
+    background: rgba(27, 216, 200, 0.18);
+    border-color: rgba(27, 216, 200, 0.6);
+}
+
+.nav-cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #1BD8C8;
+    color: #000;
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav-cart-badge.bump {
+    transform: scale(1.45);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CARD — TWO BUTTONS ON HOVER
+   ══════════════════════════════════════════════════════════════════════════ */
+.th-card-actions {
+    position: absolute;
+    bottom: 1.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
+    width: 80%;
+}
+
+/* Reset the old single-button positioning */
+.th-card-btn {
+    position: static;
+    transform: none;
+    opacity: 0;
+    width: 100%;
+    padding: 0.6rem 1.2rem;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    border-radius: 100px;
+    color: #fff;
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: opacity 0.38s ease, transform 0.38s ease,
+        background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    transform: translateY(16px);
+}
+
+.th-card:hover .th-card-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger — explore comes first, atc slightly after */
+.th-card:hover .th-card-explore {
+    transition-delay: 0.04s;
+}
+
+.th-card:hover .th-card-atc {
+    transition-delay: 0.10s;
+}
+
+.th-card-btn:hover {
+    background: rgba(var(--accent-rgb), 0.25);
+    border-color: rgba(var(--accent-rgb), 0.80);
+    box-shadow: 0 0 18px rgba(var(--accent-rgb), 0.35);
+}
+
+/* Add to cart — teal accent always */
+.th-card-atc {
+    background: rgba(27, 216, 200, 0.15);
+    border-color: rgba(27, 216, 200, 0.50);
+    color: #1BD8C8;
+}
+
+.th-card-atc:hover {
+    background: rgba(27, 216, 200, 0.30) !important;
+    border-color: #1BD8C8 !important;
+    box-shadow: 0 0 22px rgba(27, 216, 200, 0.40) !important;
+    color: #fff;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FLY-TO-CART ANIMATION
+   ══════════════════════════════════════════════════════════════════════════ */
+.fly-can {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    object-fit: contain;
+    border-radius: 8px;
+    will-change: transform, opacity;
+}
+
+@keyframes flyUp {
+    from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-100px) scale(1.08);
+        opacity: 1;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CART SIDEBAR
+   ══════════════════════════════════════════════════════════════════════════ */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(400px, 92vw);
+    height: 100vh;
+    background: rgba(5, 15, 7, 0.96);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border-left: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: -12px 0 60px rgba(0, 0, 0, 0.55);
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cart-sidebar.open {
+    transform: translateX(0);
+}
+
+.cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 4999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.cart-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Header */
+.cart-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.8rem 1.6rem 1.4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+.cart-sidebar-title {
+    font-family: "Metal Mania", system-ui;
+    font-size: 26px;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 20px rgba(27, 216, 200, 0.4);
+}
+
+.cart-close-btn {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.6);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.cart-close-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+}
+
+/* Items list */
+.cart-items-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.2rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+
+.cart-empty-msg {
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.30);
+    text-align: center;
+    line-height: 1.7;
+    margin: auto;
+}
+
+/* Individual cart item */
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 0.85rem 1rem;
+    animation: cartItemSlideIn 0.35s ease forwards;
+}
+
+@keyframes cartItemSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.cart-item-img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+}
+
+.cart-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.cart-item-name {
+    font-family: "Metal Mania", system-ui;
+    font-size: 15px;
+    color: #fff;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cart-item-price {
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: #1BD8C8;
+    margin-top: 2px;
+}
+
+/* Qty controls */
+.cart-item-qty {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.cart-qty-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    background: rgba(255, 255, 255, 0.07);
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.18s, border-color 0.18s;
+    line-height: 1;
+    padding-bottom: 1px;
+}
+
+.cart-qty-btn:hover {
+    background: rgba(27, 216, 200, 0.20);
+    border-color: rgba(27, 216, 200, 0.55);
+}
+
+.cart-qty-num {
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    min-width: 18px;
+    text-align: center;
+}
+
+/* Cart footer */
+.cart-footer {
+    padding: 1.4rem 1.6rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-total-label {
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.40);
+}
+
+.cart-total-value {
+    font-family: "Metal Mania", system-ui;
+    font-size: 24px;
+    color: #fff;
+    text-shadow: 0 0 18px rgba(27, 216, 200, 0.45);
+}
+
+.cart-checkout-btn {
+    width: 100%;
+    padding: 0.95rem;
+    background: linear-gradient(135deg, #1BD8C8, #00993B);
+    border: none;
+    border-radius: 100px;
+    color: #fff;
+    font-family: "Metal Mania", system-ui;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: opacity 0.2s, box-shadow 0.2s, transform 0.2s;
+    box-shadow: 0 6px 28px rgba(27, 216, 200, 0.30);
+}
+
+.cart-checkout-btn:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 36px rgba(27, 216, 200, 0.45);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FLOATING CART BUTTON
+   ══════════════════════════════════════════════════════════════════════════ */
+.floating-cart {
+    position: fixed;
+    bottom: 2.4rem;
+    right: 2.4rem;
+    z-index: 6000;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.22);
+    background: rgba(5, 20, 10, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(27, 216, 200, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    transform-origin: center;
+}
+
+.floating-cart:hover {
+    border-color: rgba(27, 216, 200, 0.55);
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(27, 216, 200, 0.40),
+        0 0 22px rgba(27, 216, 200, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.floating-cart-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    pointer-events: none;
+    user-select: none;
+}
+
+.floating-cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #1BD8C8;
+    color: #041a0a;
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px;
+    border: 2px solid #050f07;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Bump when item added */
+@keyframes cartBump {
+    0% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(1.38);
+    }
+
+    65% {
+        transform: scale(0.90);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.floating-cart.bumping {
+    animation: cartBump 0.5s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CARD BUTTONS — more visible colours
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Reset old conflicting rule */
+.th-card-btn {
+    position: static !important;
+    transform: translateY(16px) !important;
+    opacity: 0 !important;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 100px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease,
+        background 0.2s,
+        box-shadow 0.2s;
+}
+
+.th-card:hover .th-card-btn {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.th-card:hover .th-card-explore {
+    transition-delay: 0.04s;
+}
+
+.th-card:hover .th-card-atc {
+    transition-delay: 0.11s;
+}
+
+/* Explore — dark solid, clearly legible on grey card */
+.th-card-explore {
+    background: #111;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.th-card-explore:hover {
+    background: #000;
+    border-color: rgba(var(--accent-rgb), 0.7);
+    box-shadow: 0 0 18px rgba(var(--accent-rgb), 0.30);
+}
+
+/* Add to Cart — teal fill, high contrast */
+.th-card-atc {
+    background: #1BD8C8;
+    color: #041a0a;
+    border-color: #1BD8C8;
+}
+
+.th-card-atc:hover {
+    background: #13c4b5;
+    box-shadow: 0 0 22px rgba(27, 216, 200, 0.50);
+}
