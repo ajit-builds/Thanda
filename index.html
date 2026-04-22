@@ -34,9 +34,9 @@
         <div class="carousel">
             <img src="Assets/blueberryasset/BlueberryC 1.svg" class="can">
             <img src="Assets/Lemonassets/Component 2 1 3.svg" class="can">
-            <img src="Assets/mintassets/Lemon 1 1.svg" class="can">
-            <img src="Assets/orange/CoffeC 2.svg" class="can">
-            <img src="Assets/premiumcanasset/PremiumC 1 1.svg" class="can">
+            <img src="Assets/mintassets/Lemon 1 1.svg" class="can mintcan">
+            <img src="Assets/orange/CoffeC 2.svg" class="can orangecan">
+            <img src="Assets/premiumcanasset/PremiumC 1 1.svg" class="can bluebolt">
         </div>
 
         <button class="left">←</button>
@@ -210,7 +210,8 @@
                                 d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.402 6.231H2.744l7.737-8.835L2.25 2.25h6.844l4.26 5.632 4.89-5.632Zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                         </svg>
                     </a>
-                    <a href="https://youtu.be/_xlGhmkUjoI?si=T64z__hE9oIE3KRW" class="footer-social" aria-label="YouTube">
+                    <a href="https://youtu.be/_xlGhmkUjoI?si=T64z__hE9oIE3KRW" class="footer-social"
+                        aria-label="YouTube">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                             <path
                                 d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29.94 29.94 0 0 0 1 12a29.94 29.94 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29.94 29.94 0 0 0 23 12a29.94 29.94 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
@@ -423,15 +424,15 @@
         ]; // ← DO NOT remove
         const THEMES = [
 
-            // ── 0 · BLUEBERRY ────────────────────────────────────────────────────
+            // ── 1· BLUEBERRY ────────────────────────────────────────────────────
             {
                 title: "Blue berry",
                 tagline: "A Cool Burst of Bold Blueberry Freshness",
                 description: "Pressed from highland blueberries at peak ripeness.\nNo sugar. No shortcuts. Pure wild intensity.",
                 accentColor: "#7EB3FF",
                 fruits: [
-                    { src: "Assets/blueberryasset/NicePng_blueberry-png_161611 1.svg", x: "22%", y: "-5%", width: "1100px", rotate: "0deg", delay: 0 },
-                    { src: "Assets/blueberryasset/water-png-784 1.svg", x: "31%", y: "10%", width: "1000px", rotate: "-5deg", delay: 100 },
+                    { src: "Assets/blueberryasset/NicePng_blueberry-png_161611 1.svg", x: "22%", y: "-5%", width: "1100px", rotate: "0deg", delay: 0,class:"blueberry-item" },
+                    { src: "Assets/blueberryasset/water-png-784 1.svg", x: "31%", y: "10%", width: "1000px", rotate: "-5deg", delay: 100,class:"blueberry-item"  },
                 ]
             },
 
@@ -443,9 +444,9 @@
                 description: "An electrifying blend of bold blue flavor and icy refreshment, crafted to deliver a powerful burst of energy with every sip.",
                 accentColor: "#F5E642",
                 fruits: [
-                    { src: "Assets/premiumcanasset/vecteezy_a-minimal-blue-lightning-thunder_51015894 1 (1).svg", x: "0%", y: "0%", width: "100vw", rotate: "0deg", delay: 200 },
-                    { src: "Assets/premiumcanasset/pngimg.com - lightning_PNG23 1 (1).svg", x: "45%", y: "18%", width: "1200px", rotate: "-10deg", delay: 120 },
-                    { src: "Assets/premiumcanasset/kindpng_5484863 1 (1).svg", x: "21%", y: "0%", width: "1100px", rotate: "0deg", delay: 0 },
+                    { src: "Assets/premiumcanasset/vecteezy_a-minimal-blue-lightning-thunder_51015894 1 (1).svg", x: "0%", y: "0%", width: "100vw", rotate: "0deg", delay: 200,class:"boltcan" },
+                    { src: "Assets/premiumcanasset/pngimg.com - lightning_PNG23 1 (1).svg", x: "45%", y: "18%", width: "1200px", rotate: "-10deg", delay: 120,class:"boltcan" },
+                    { src: "Assets/premiumcanasset/kindpng_5484863 1 (1).svg", x: "21%", y: "0%", width: "1100px", rotate: "0deg", delay: 0,class:"blueberry"},
                 ]
             },
 
@@ -459,11 +460,11 @@
                 fruits: [
 
 
-                    { src: "Assets/orange/pngegg (9) 1.svg", x: "25%", y: "-5%", width: "1200px", rotate: "-10deg", delay: 260 },
-                    { src: "Assets/orange/pngegg (4) 1.svg", x: "25%", y: "-12%", width: "900px", rotate: "-10deg", delay: 100 },
-                    { src: "Assets/orange/pngegg (1) 1.svg", x: "28%", y: "-3%", width: "900px", rotate: "-5deg", delay: 0 },
-                    { src: "Assets/orange/pngegg 1.svg", x: "47%", y: "8%", width: "800px", rotate: "0deg", delay: 260 },
-                    { src: "Assets/orange/pngegg (6) 1.svg", x: "40%", y: "45%", width: "250px", rotate: "5deg", delay: 180 },
+                    { src: "Assets/orange/pngegg (9) 1.svg", x: "25%", y: "-5%", width: "1200px", rotate: "-10deg", delay: 260,class:"icy-tang" },
+                    { src: "Assets/orange/pngegg (4) 1.svg", x: "25%", y: "-12%", width: "900px", rotate: "-10deg", delay: 100,class:"icy-tang" },
+                    { src: "Assets/orange/pngegg (1) 1.svg", x: "28%", y: "-3%", width: "900px", rotate: "-5deg", delay: 0,class:"icy-tang" },
+                    { src: "Assets/orange/pngegg 1.svg", x: "47%", y: "8%", width: "800px", rotate: "0deg", delay: 260 ,class:"icy-tang"},
+                    { src: "Assets/orange/pngegg (6) 1.svg", x: "40%", y: "45%", width: "250px", rotate: "5deg", delay: 180,class:"icy-tang" },
                 ]
             },
 
@@ -493,7 +494,7 @@
                 accentColor: "#D4AF37",
                 fruits: [
                     { src: "Assets/Lemonassets/pngimg.com - smoke_PNG55220 1.svg", x: "25%", y: "0%", width: "1200px", rotate: "0deg", delay: 130 },
-                    { src: "Assets/Lemonassets/pngimg.com - smoke_PNG55220 2.svg", x: "0%", y: "0%", width: "1500px", rotate: "0deg", delay: 0 },
+                    { src: "Assets/Lemonassets/pngimg.com - smoke_PNG55220 2.svg", x: "0%", y: "0%", width: "1500px", rotate: "0deg", delay: 0, class:"smoke"},
                     { src: "Assets/Lemonassets/pngimg.com - lemon_PNG3877 1.svg", x: "36%", y: "-15%", width: "800px", rotate: "-0deg", delay: 220 },
                     { src: "Assets/Lemonassets/pngimg.com - lemon_PNG3879 1.svg", x: "38%", y: "8%", width: "750px", rotate: "10deg", delay: 220 },
                 ]
@@ -544,6 +545,7 @@
 
             function renderCans(offset) {
                 readCanSize();
+                // renderCans(wheelOffset); 
                 const hw = CAN_W / 2, hh = CAN_H / 2;
                 cans.forEach((can, i) => {
                     const angle = DISPLAY_ANG + offset + i * ANG_STEP;
@@ -599,6 +601,10 @@
                     const img = document.createElement("img");
                     img.src = f.src;
                     img.className = "fruit-item";
+                    // optional custom class
+                    if (f.class) {
+                        img.classList.add(f.class);
+                    }
                     img.style.cssText = `
                 left:              ${f.x};
                 top:               ${f.y};
@@ -686,19 +692,20 @@
 
             // ── Thanda House Carousel ─────────────────────────────────────────────────
             (function () {
-                const VISIBLE = 3;
+                const CLONE_COUNT = 4;
                 const TOTAL = TH_CARDS.length; // 9
 
                 const track = document.getElementById("thTrack");
+                const viewport = track?.parentElement;
                 const dotBox = document.getElementById("thDots");
-                if (!track || !dotBox) return;
+                if (!track || !dotBox || !viewport) return;
 
                 // Build infinite loop buffer:
-                // [last 3 clones] + [all 9 real] + [first 3 clones]  = 15 items total
+                // [last clones] + [all real] + [first clones]
                 const allItems = [
-                    ...TH_CARDS.slice(-VISIBLE),
+                    ...TH_CARDS.slice(-CLONE_COUNT),
                     ...TH_CARDS,
-                    ...TH_CARDS.slice(0, VISIBLE)
+                    ...TH_CARDS.slice(0, CLONE_COUNT)
                 ];
 
                 // ── Render cards ────────────────────────────────────────────────────────
@@ -735,10 +742,31 @@
                 const allDots = () => [...dotBox.querySelectorAll(".th-dot")];
 
                 // ── State ────────────────────────────────────────────────────────────────
-                let idx = VISIBLE; // points to first real card
+                let cardsPerView = 3;
+                let idx = CLONE_COUNT; // points to first real card
                 let isAnimating = false;
 
                 // ── Helpers ──────────────────────────────────────────────────────────────
+                function getCardsPerView() {
+                    if (window.innerWidth <= 768) return 1;
+                    if (window.innerWidth <= 1180) return 2;
+                    if (window.innerWidth >= 1700) return 4;
+                    return 3;
+                }
+
+                function layoutCards() {
+                    cardsPerView = getCardsPerView();
+                    const gap = parseFloat(window.getComputedStyle(track).gap) || 24;
+                    const viewportWidth = viewport.clientWidth;
+                    const cardWidth = (viewportWidth - gap * (cardsPerView - 1)) / cardsPerView;
+                    const maxCardHeight = viewport.clientHeight * (window.innerWidth <= 768 ? 0.8 : 0.92);
+
+                    [...track.children].forEach(card => {
+                        card.style.width = `${cardWidth}px`;
+                        card.style.maxHeight = `${maxCardHeight}px`;
+                    });
+                }
+
                 function stepWidth() {
                     // card's actual rendered width + the CSS gap
                     const card = track.children[0];
@@ -755,19 +783,19 @@
                 }
 
                 function syncDots() {
-                    const real = ((idx - VISIBLE) % TOTAL + TOTAL) % TOTAL;
+                    const real = ((idx - CLONE_COUNT) % TOTAL + TOTAL) % TOTAL;
                     allDots().forEach((d, i) => d.classList.toggle("active", i === real));
                 }
 
                 // ── Infinite-loop snap on transition end ─────────────────────────────────
                 track.addEventListener("transitionend", () => {
                     // Slid too far right → jumped into tail clones → silently reset to real cards
-                    if (idx >= VISIBLE + TOTAL) {
+                    if (idx >= CLONE_COUNT + TOTAL) {
                         idx -= TOTAL;
                         moveTo(idx, false);
                     }
                     // Slid too far left → jumped into head clones → silently reset to real cards
-                    if (idx < VISIBLE) {
+                    if (idx < CLONE_COUNT) {
                         idx += TOTAL;
                         moveTo(idx, false);
                     }
@@ -790,7 +818,7 @@
                 allDots().forEach((dot, i) => {
                     dot.addEventListener("click", () => {
                         if (isAnimating) return;
-                        const real = ((idx - VISIBLE) % TOTAL + TOTAL) % TOTAL;
+                        const real = ((idx - CLONE_COUNT) % TOTAL + TOTAL) % TOTAL;
                         const delta = i - real;
                         if (delta === 0) return;
                         isAnimating = true;
@@ -801,8 +829,15 @@
                 });
 
                 // ── Init ─────────────────────────────────────────────────────────────────
-                window.addEventListener("load", () => { moveTo(idx, false); syncDots(); });
-                window.addEventListener("resize", () => moveTo(idx, false));
+                window.addEventListener("load", () => {
+                    layoutCards();
+                    moveTo(idx, false);
+                    syncDots();
+                });
+                window.addEventListener("resize", () => {
+                    layoutCards();
+                    moveTo(idx, false);
+                });
             })();
             // ══════════════════════════════════════════════════════════════════════════
             // NAV LINKS — smooth scroll
