@@ -7,48 +7,76 @@
     <title>Thanda - Checkout</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        :root {
+            --checkout-nav-h: 72px;
+        }
+
         .checkout-section {
-            min-height: 100vh;
+            height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(to bottom, #1BD8C8, #00993B);
-            padding: 60px 20px 20px;
+            padding: calc(var(--checkout-nav-h) + 8px) 12px 12px;
+            overflow: hidden;
         }
 
         .checkout-container {
-            background: linear-gradient(135deg, rgba(217, 217, 217, 0.55) 0%, rgba(115, 115, 115, 0.45) 100%);
+            background: black;
             border: 1px solid rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(18px) saturate(130%);
             -webkit-backdrop-filter: blur(18px) saturate(130%);
             border-radius: 40px;
-            padding: 3rem;
+            padding: clamp(14px, 2vh, 28px);
             width: 100%;
             max-width: 600px;
+            height: calc(100dvh - var(--checkout-nav-h) - 20px);
+            max-height: calc(100dvh - var(--checkout-nav-h) - 20px);
             box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            gap: clamp(8px, 1.2vh, 14px);
         }
 
         .checkout-title {
             font-family: "Metal Mania", system-ui;
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 3.6vh, 2.5rem);
             color: #fff;
-            margin-bottom: 2rem;
+            margin-bottom: 0.2rem;
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             text-align: center;
+
+        }
+
+        #cartContent {
+            flex: 1;
+            min-height: 0;
+            overflow: auto;
+            padding-right: 4px;
+        }
+
+        #cartContent::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #cartContent::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 999px;
         }
 
         .cart-summary {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+            padding: clamp(0.8rem, 1.4vh, 1.2rem);
+            margin-bottom: clamp(0.6rem, 1vh, 1rem);
         }
 
         .cart-item-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: clamp(0.5rem, 0.9vh, 0.8rem) 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             color: #fff;
             font-family: "DM Sans", sans-serif;
@@ -74,13 +102,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem;
+            padding: clamp(0.8rem, 1.2vh, 1.2rem);
             background: rgba(77, 255, 160, 0.15);
             border-radius: 15px;
-            margin: 1.5rem 0;
+            margin: clamp(0.45rem, 0.8vh, 0.8rem) 0;
             color: #fff;
             font-family: "DM Sans", sans-serif;
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 1.8vh, 1.2rem);
             font-weight: bold;
         }
 
@@ -90,14 +118,14 @@
 
         .cart-total-value {
             color: #4DFFA0;
-            font-size: 1.5rem;
+            font-size: clamp(1.05rem, 2vh, 1.35rem);
         }
 
         .checkout-info {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+            padding: clamp(0.8rem, 1.3vh, 1.1rem);
+            margin-bottom: 0;
             color: #fff;
             font-family: "DM Sans", sans-serif;
             font-size: 0.95rem;
@@ -111,17 +139,17 @@
 
         .checkout-btn {
             width: 100%;
-            padding: 16px;
+            padding: clamp(11px, 1.6vh, 14px);
             border-radius: 12px;
             border: none;
             background: #fff;
             color: #00993B;
             font-family: "DM Sans", sans-serif;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 1.6vh, 1.05rem);
             cursor: pointer;
             transition: all 0.3s;
-            margin-bottom: 1rem;
+            margin-bottom: clamp(6px, 1vh, 10px);
         }
 
         .checkout-btn:hover:not(:disabled) {
@@ -185,8 +213,8 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 14px;
-            padding: 0.9rem 1rem;
-            margin-bottom: 1rem;
+            padding: clamp(0.55rem, 1vh, 0.8rem) clamp(0.7rem, 1.2vh, 0.95rem);
+            margin-bottom: 0;
             font-family: "DM Sans", sans-serif;
             color: #fff;
             display: flex;
@@ -204,10 +232,30 @@
             color: #0b8a41;
             border: none;
             border-radius: 10px;
-            padding: 10px 14px;
+            padding: clamp(8px, 1.2vh, 10px) clamp(10px, 1.6vh, 14px);
             font-family: "DM Sans", sans-serif;
             font-weight: 700;
             cursor: pointer;
+        }
+
+        @media (max-height: 760px) {
+            :root {
+                --checkout-nav-h: 64px;
+            }
+
+            .checkout-container {
+                border-radius: 24px;
+            }
+
+            .message {
+                margin: 0;
+                padding: 0.65rem;
+            }
+
+            .empty-cart-msg {
+                padding: 1rem;
+                font-size: 0.95rem;
+            }
         }
 
         .discount-btn:disabled {
@@ -231,12 +279,12 @@
         }
 
         .game-card {
-            width: min(620px, 96vw);
+            width: min(720px, 97vw);
             background: linear-gradient(140deg, rgba(8, 58, 31, 0.92), rgba(7, 36, 19, 0.96));
             border: 1px solid rgba(255, 255, 255, 0.35);
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-            padding: 14px;
+            padding: 16px;
             color: #fff;
             font-family: "DM Sans", sans-serif;
         }
@@ -307,6 +355,58 @@
             opacity: 0.6;
             cursor: not-allowed;
         }
+
+        .result-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            padding: 16px;
+        }
+
+        .result-modal.open {
+            display: flex;
+        }
+
+        .result-card {
+            width: min(420px, 95vw);
+            background: linear-gradient(140deg, rgba(8, 58, 31, 0.96), rgba(7, 36, 19, 0.98));
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 16px;
+            padding: 18px;
+            color: #fff;
+            text-align: center;
+            font-family: "DM Sans", sans-serif;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .result-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.3rem;
+        }
+
+        .result-card p {
+            margin: 6px 0;
+            font-size: 0.98rem;
+        }
+
+        .result-card b {
+            color: #4DFFA0;
+        }
+
+        .result-ok-btn {
+            margin-top: 12px;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-weight: 700;
+            color: #0b8a41;
+            background: #fff;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -351,7 +451,7 @@
                 <span>Misses: <b id="gameMisses">0</b>/4</span>
                 <span>Time: <b id="gameTime">30</b>s</span>
             </div>
-            <canvas id="discountGameCanvas" width="560" height="320"></canvas>
+            <canvas id="discountGameCanvas" width="640" height="380"></canvas>
             <div class="game-footer">
                 <span class="game-hint" id="gameMessage">Use mouse/touch or Arrow keys to move the cart.</span>
                 <button class="game-action" id="claimDiscountBtn" disabled>Claim Discount</button>
@@ -359,14 +459,84 @@
         </div>
     </div>
 
+    <div class="result-modal" id="gameResultModal">
+        <div class="result-card">
+            <h3>Discount Unlocked</h3>
+            <p id="gameResultText"></p>
+            <p>This discount is now locked for this order.</p>
+            <button class="result-ok-btn" id="gameResultOkBtn">Awesome</button>
+        </div>
+    </div>
+
     <script>
+        const DISCOUNT_STATE_KEY = 'thandaCheckoutDiscountState';
+
         const gameDiscountState = {
             percent: 0,
             amount: 0,
             score: 0,
             played: false,
-            claimed: false
+            claimed: false,
+            locked: false
         };
+
+        function getOrderSignature(cartItems) {
+            return cartItems
+                .map(item => `${item.name}:${getItemQty(item)}:${getItemPrice(item)}`)
+                .sort()
+                .join('|');
+        }
+
+        function loadSavedDiscountState(orderSignature) {
+            try {
+                const raw = sessionStorage.getItem(DISCOUNT_STATE_KEY);
+                if (!raw) return false;
+                const saved = JSON.parse(raw);
+                if (!saved || saved.orderSignature !== orderSignature) return false;
+
+                gameDiscountState.percent = Number(saved.percent) || 0;
+                gameDiscountState.amount = Number(saved.amount) || 0;
+                gameDiscountState.score = Number(saved.score) || 0;
+                gameDiscountState.played = !!saved.played;
+                gameDiscountState.claimed = !!saved.claimed;
+                gameDiscountState.locked = !!saved.locked;
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
+
+        function persistDiscountState(orderSignature) {
+            sessionStorage.setItem(DISCOUNT_STATE_KEY, JSON.stringify({
+                orderSignature,
+                percent: gameDiscountState.percent,
+                amount: gameDiscountState.amount,
+                score: gameDiscountState.score,
+                played: gameDiscountState.played,
+                claimed: gameDiscountState.claimed,
+                locked: gameDiscountState.locked
+            }));
+        }
+
+        function resetDiscountState() {
+            gameDiscountState.percent = 0;
+            gameDiscountState.amount = 0;
+            gameDiscountState.score = 0;
+            gameDiscountState.played = false;
+            gameDiscountState.claimed = false;
+            gameDiscountState.locked = false;
+        }
+
+        function showGameResultPopup(score, percent) {
+            const modal = document.getElementById('gameResultModal');
+            const text = document.getElementById('gameResultText');
+            text.innerHTML = `Your score: <b>${score}</b><br>Your discount: <b>${percent}%</b>`;
+            modal.classList.add('open');
+        }
+
+        function closeGameResultPopup() {
+            document.getElementById('gameResultModal').classList.remove('open');
+        }
 
         function getItemQty(item) {
             const q = Number(item.qty ?? item.quantity ?? 0);
@@ -389,14 +559,16 @@
         function updateDiscountSummary() {
             const discountSummaryText = document.getElementById('discountSummaryText');
             const playDiscountBtn = document.getElementById('playDiscountBtn');
+            const orderPlaced = document.getElementById('processCheckoutBtn').dataset.orderPlaced === 'true';
 
             if (!gameDiscountState.played) {
                 discountSummaryText.innerHTML = 'Discount: <b>0%</b> (Play game to unlock)';
             } else {
-                discountSummaryText.innerHTML = `Discount: <b>${gameDiscountState.percent}%</b> (Score: ${gameDiscountState.score})`;
+                discountSummaryText.innerHTML = `Discount: <b>${gameDiscountState.percent}%</b> (Score: ${gameDiscountState.score}) - locked for this order`;
             }
 
-            playDiscountBtn.textContent = gameDiscountState.played ? 'Play Again' : 'Play for Discount';
+            playDiscountBtn.textContent = gameDiscountState.played ? 'Discount Used' : 'Play for Discount';
+            playDiscountBtn.disabled = gameDiscountState.locked || orderPlaced;
         }
 
         function getCartFromSession() {
@@ -410,6 +582,13 @@
         function loadCartSummary() {
             const cartItems = getCartFromSession();
             const cartContent = document.getElementById('cartContent');
+            const orderSignature = getOrderSignature(cartItems);
+            const restored = loadSavedDiscountState(orderSignature);
+
+            if (!restored) {
+                resetDiscountState();
+                persistDiscountState(orderSignature);
+            }
 
             if (cartItems.length === 0) {
                 cartContent.innerHTML = `
@@ -418,6 +597,7 @@
                     </div>
                 `;
                 document.getElementById('processCheckoutBtn').disabled = true;
+                document.getElementById('playDiscountBtn').disabled = true;
                 return;
             }
 
@@ -473,6 +653,7 @@
             `;
 
             document.getElementById('processCheckoutBtn').dataset.totalPrice = finalPrice.toFixed(2);
+            persistDiscountState(orderSignature);
 
             updateDiscountSummary();
         }
@@ -519,9 +700,11 @@
 
         (function setupDiscountGame() {
             const gameModal = document.getElementById('gameModal');
+            const gameResultModal = document.getElementById('gameResultModal');
             const playDiscountBtn = document.getElementById('playDiscountBtn');
             const closeGameBtn = document.getElementById('closeGameBtn');
             const claimDiscountBtn = document.getElementById('claimDiscountBtn');
+            const gameResultOkBtn = document.getElementById('gameResultOkBtn');
             const gameScoreEl = document.getElementById('gameScore');
             const gameMissesEl = document.getElementById('gameMisses');
             const gameTimeEl = document.getElementById('gameTime');
@@ -529,6 +712,22 @@
 
             const canvas = document.getElementById('discountGameCanvas');
             const ctx = canvas.getContext('2d');
+
+            function createImage(src) {
+                const img = new Image();
+                img.src = src;
+                return img;
+            }
+
+            const canImages = [
+                createImage('Assets/ArnavThanda/BlueberryC 1 2.svg'),
+                createImage('Assets/ArnavThanda/Component 6 67.svg'),
+                createImage('Assets/ArnavThanda/Component 666.svg'),
+                createImage('Assets/ArnavThanda/Component 668 4.svg'),
+                createImage('Assets/ArnavThanda/Green 555.svg'),
+                createImage('Assets/ArnavThanda/PremiumC 1 8.svg')
+            ];
+            const cartImage = createImage('Assets/ArnavThanda/ShoppingCart.svg');
 
             const game = {
                 running: false,
@@ -538,9 +737,9 @@
                 canItems: [],
                 spawnTimer: 0,
                 elapsed: 0,
-                cartX: canvas.width / 2 - 45,
-                cartW: 90,
-                cartH: 18,
+                cartX: canvas.width / 2 - 66,
+                cartW: 132,
+                cartH: 52,
                 speedX: 0,
                 animId: null,
                 lastTs: 0
@@ -568,7 +767,7 @@
                 game.speedX = 0;
                 game.lastTs = performance.now();
 
-                claimDiscountBtn.disabled = true;
+                resetClaimButton();
                 gameMessageEl.textContent = 'Hard level: fast cans, only 4 misses allowed.';
                 syncHud();
 
@@ -585,17 +784,27 @@
             function endGame() {
                 stopGame();
                 const percent = scoreToDiscount(game.score);
+                const currentSignature = getOrderSignature(getCartFromSession());
 
                 gameDiscountState.played = true;
-                gameDiscountState.claimed = false;
+                gameDiscountState.claimed = true;
+                gameDiscountState.locked = true;
                 gameDiscountState.score = game.score;
                 gameDiscountState.percent = percent;
+                persistDiscountState(currentSignature);
 
-                gameMessageEl.textContent = percent > 0
-                    ? `Great run! Score ${game.score}. You unlocked ${percent}% discount.`
-                    : `Score ${game.score}. No discount this time - try again for 5%+.`;
+                gameMessageEl.textContent = `Final score ${game.score}. Discount ${percent}% applied.`;
+                claimDiscountBtn.textContent = 'Game Completed';
+                claimDiscountBtn.disabled = true;
 
-                claimDiscountBtn.disabled = false;
+                closeGame();
+                loadCartSummary();
+                showGameResultPopup(game.score, percent);
+            }
+
+            function resetClaimButton() {
+                claimDiscountBtn.textContent = 'Claim Discount';
+                claimDiscountBtn.disabled = true;
             }
 
             function syncHud() {
@@ -605,14 +814,16 @@
             }
 
             function spawnCan() {
-                const size = 26 + Math.random() * 10;
+                const size = 42 + Math.random() * 12;
                 const x = Math.random() * (canvas.width - size);
 
                 // Hard single level: speed scales fast over time.
                 const base = 145 + Math.min(150, game.elapsed * 4.8);
                 const speed = base + Math.random() * 75;
 
-                game.canItems.push({ x, y: -size, size, speed });
+                const image = canImages[Math.floor(Math.random() * canImages.length)];
+
+                game.canItems.push({ x, y: -size, size, speed, image });
             }
 
             function update(dt) {
@@ -629,7 +840,7 @@
                 game.cartX += game.speedX * dt;
                 game.cartX = Math.max(0, Math.min(canvas.width - game.cartW, game.cartX));
 
-                const cartY = canvas.height - 34;
+                const cartY = canvas.height - game.cartH - 8;
 
                 for (let i = game.canItems.length - 1; i >= 0; i--) {
                     const canObj = game.canItems[i];
@@ -661,6 +872,8 @@
 
             function draw() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = 'high';
 
                 // Ground stripe
                 ctx.fillStyle = 'rgba(255,255,255,0.25)';
@@ -668,21 +881,35 @@
 
                 // Cans
                 game.canItems.forEach(canObj => {
-                    ctx.fillStyle = '#ffffff';
-                    ctx.fillRect(canObj.x, canObj.y, canObj.size, canObj.size);
-                    ctx.fillStyle = '#00993B';
-                    ctx.fillRect(canObj.x + 4, canObj.y + 4, canObj.size - 8, canObj.size - 8);
-                    ctx.fillStyle = '#fff';
-                    ctx.font = 'bold 9px sans-serif';
-                    ctx.fillText('TH', canObj.x + canObj.size / 2 - 6, canObj.y + canObj.size / 2 + 3);
+                    if (canObj.image && canObj.image.complete) {
+                        ctx.drawImage(canObj.image, canObj.x, canObj.y, canObj.size, canObj.size);
+                    } else {
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fillRect(canObj.x, canObj.y, canObj.size, canObj.size);
+                    }
                 });
 
                 // Cart (player)
-                const cartY = canvas.height - 34;
-                ctx.fillStyle = '#2c1b0f';
-                ctx.fillRect(game.cartX, cartY, game.cartW, game.cartH);
-                ctx.fillStyle = '#5a3a21';
-                ctx.fillRect(game.cartX + 8, cartY - 8, game.cartW - 16, 8);
+                const cartY = canvas.height - game.cartH - 8;
+                if (cartImage.complete) {
+                    // Crop 2px from right side of source image to hide right-edge border artifact.
+                    const sourceWidth = Math.max(1, cartImage.naturalWidth - 2);
+                    const sourceHeight = Math.max(1, cartImage.naturalHeight);
+                    ctx.drawImage(
+                        cartImage,
+                        0,
+                        0,
+                        sourceWidth,
+                        sourceHeight,
+                        game.cartX,
+                        cartY,
+                        game.cartW,
+                        game.cartH
+                    );
+                } else {
+                    ctx.fillStyle = '#2c1b0f';
+                    ctx.fillRect(game.cartX, cartY, game.cartW, game.cartH);
+                }
             }
 
             function tick(ts) {
@@ -722,6 +949,7 @@
 
             playDiscountBtn.addEventListener('click', () => {
                 if (document.getElementById('processCheckoutBtn').dataset.orderPlaced === 'true') return;
+                if (gameDiscountState.locked) return;
                 openGame();
             });
 
@@ -731,9 +959,12 @@
             });
 
             claimDiscountBtn.addEventListener('click', () => {
-                gameDiscountState.claimed = true;
                 closeGame();
-                loadCartSummary();
+            });
+
+            gameResultOkBtn.addEventListener('click', closeGameResultPopup);
+            gameResultModal.addEventListener('click', (e) => {
+                if (e.target === gameResultModal) closeGameResultPopup();
             });
         })();
 

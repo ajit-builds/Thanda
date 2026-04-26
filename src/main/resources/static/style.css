@@ -44,9 +44,9 @@ body {
     font-size: clamp(16px, 1.4vw, 26px);
     text-decoration: none;
     color: #fff;
-    font-family: "Metal Mania", system-ui;
-    font-weight: 400;
-    font-style: normal;
+    font-family: sans-serif;
+    font-weight: 900;
+    font-style: bold;
     margin: 1rem auto;
     letter-spacing: 0.04em;
     transition: opacity 0.2s;
