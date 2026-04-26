@@ -425,7 +425,7 @@
             <h1 class="checkout-title">Checkout</h1>
 
             <div id="cartContent">
-                <!-- Cart items will be loaded here -->
+                
             </div>
 
             <div class="discount-strip">
@@ -661,7 +661,7 @@
         document.getElementById('processCheckoutBtn').addEventListener('click', () => {
             const btn = document.getElementById('processCheckoutBtn');
 
-            // After order is placed, clicking "Done" takes user to home.
+            
             if (btn.dataset.orderPlaced === 'true') {
                 window.location.href = 'index.html';
                 return;
@@ -817,7 +817,7 @@
                 const size = 42 + Math.random() * 12;
                 const x = Math.random() * (canvas.width - size);
 
-                // Hard single level: speed scales fast over time.
+                
                 const base = 145 + Math.min(150, game.elapsed * 4.8);
                 const speed = base + Math.random() * 75;
 
@@ -875,11 +875,11 @@
                 ctx.imageSmoothingEnabled = true;
                 ctx.imageSmoothingQuality = 'high';
 
-                // Ground stripe
+                
                 ctx.fillStyle = 'rgba(255,255,255,0.25)';
                 ctx.fillRect(0, canvas.height - 16, canvas.width, 16);
 
-                // Cans
+                
                 game.canItems.forEach(canObj => {
                     if (canObj.image && canObj.image.complete) {
                         ctx.drawImage(canObj.image, canObj.x, canObj.y, canObj.size, canObj.size);
@@ -889,10 +889,10 @@
                     }
                 });
 
-                // Cart (player)
+                
                 const cartY = canvas.height - game.cartH - 8;
                 if (cartImage.complete) {
-                    // Crop 2px from right side of source image to hide right-edge border artifact.
+                    
                     const sourceWidth = Math.max(1, cartImage.naturalWidth - 2);
                     const sourceHeight = Math.max(1, cartImage.naturalHeight);
                     ctx.drawImage(
@@ -968,7 +968,7 @@
             });
         })();
 
-        // Load cart on page load
+        
         loadCartSummary();
     </script>
 </body>

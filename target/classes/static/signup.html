@@ -14,7 +14,7 @@
             justify-content: center;
             background: linear-gradient(to bottom, #1BD8C8, #00993B);
             padding-top: 60px;
-            /* offset for nav */
+            
         }
 
         .signup-card {
@@ -191,7 +191,7 @@
                 return `http://localhost:8080${path}`;
             }
 
-            // Live Server usually runs on 5500/5501; backend API is on 8080.
+            
             if (isLocalDevHost && port && port !== '8080') {
                 return `http://${host}:8080${path}`;
             }
@@ -233,7 +233,7 @@
                     messageEl.className = 'message success';
                     document.getElementById('signupForm').reset();
 
-                    // Persist auth and profile data used by homepage/profile page.
+                    
                     if (data.token) {
                         localStorage.setItem('authToken', data.token);
                     }
@@ -244,7 +244,7 @@
                         token: data.token || null
                     }));
 
-                    // Redirect to home after 1.5 seconds
+                    
                     setTimeout(() => {
                         window.location.href = 'index.html';
                     }, 1500);

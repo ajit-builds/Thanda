@@ -14,7 +14,7 @@
             justify-content: center;
             background: linear-gradient(to bottom, #1BD8C8, #00993B);
             padding-top: 60px;
-            /* offset for nav */
+            
         }
 
         .profile-card {
@@ -157,7 +157,7 @@
             const userData = localStorage.getItem('thandaUser');
             const authToken = localStorage.getItem('authToken');
             if (!userData || !authToken) {
-                // Not logged in, send back to home
+                
                 window.location.href = 'index.html';
                 return;
             }

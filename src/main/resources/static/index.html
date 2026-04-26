@@ -10,7 +10,7 @@
 
 <body>
     <header class="hero" id="hero">
-        <!-- REPLACE the nav entirely -->
+        
         <nav class="navigation">
             <a href="#hero" class="nav-link active">Home</a>
             <a href="#thandaHouse" class="nav-link">Beverages</a>
@@ -20,7 +20,7 @@
             <a href="#" class="nav-link" id="navCartLink">My Cart</a>
         </nav>
 
-        <!-- Theme Layer: background fruits + text are injected here by JS -->
+        
         <div class="theme-layer">
             <div class="fruit-layer" id="fruitLayer"></div>
             <div class="text-layer" id="textLayer">
@@ -44,7 +44,7 @@
     </header>
     <main>
        
-        <!-- ── Section 3: Thanda House ─────────────────────────────────────────── -->
+        
         <section class="thanda-house" id="thandaHouse">
 
             <div class="th-header">
@@ -95,14 +95,14 @@
                 </div>
             </div>
         </section>
-        <!-- ── Section 4 : Get In Touch ──────────────────────────────────────────── -->
+        
         <section class="contact-section" id="contact">
 
             <h2 class="contact-title">Get In Touch</h2>
 
             <div class="contact-joint">
 
-                <!-- LEFT CARD — contact details ─────────────────────────────── -->
+                
                 <div class="contact-card contact-card--left">
 
 
@@ -170,10 +170,10 @@
                     </ul>
                 </div>
 
-                <!-- Shine strip between cards -->
+                
                 <div class="contact-joint-shine"></div>
 
-                <!-- RIGHT CARD — can visual ──────────────────────────────────── -->
+                
                 <div class="contact-card contact-card--right">
                     <img src="Assets/ArnavThanda/Green 555.svg" alt="Thanda Can" class="contact-can">
                 </div>
@@ -184,15 +184,15 @@
 
 
     </main>
-    <!-- ── Footer ────────────────────────────────────────────────────────────── -->
+    
     <footer class="site-footer">
 
-        <!-- Background decorative can -->
+        
         <img src="Assets/mintassets/Lemon_1-removebg-preview.png" alt="" class="footer-bg-can" aria-hidden="true">
 
         <div class="footer-inner">
 
-            <!-- ── Brand column ───────────────────────────────────────────── -->
+            
             <div class="footer-brand">
                 <p class="footer-logo">Thanda</p>
                 <p class="footer-tagline">No sugar. No shortcuts.<br>Pure wild intensity.</p>
@@ -221,10 +221,10 @@
                 </div>
             </div>
 
-            <!-- ── Divider ────────────────────────────────────────────────── -->
+            
             <div class="footer-divider footer-divider--v"></div>
 
-            <!-- ── Products column ───────────────────────────────────────── -->
+            
             <div class="footer-col">
                 <p class="footer-col-heading">Our Drinks</p>
                 <ul class="footer-links">
@@ -236,10 +236,10 @@
                 </ul>
             </div>
 
-            <!-- ── Divider ────────────────────────────────────────────────── -->
+            
             <div class="footer-divider footer-divider--v"></div>
 
-            <!-- ── Company column ────────────────────────────────────────── -->
+            
             <div class="footer-col">
                 <p class="footer-col-heading">Company</p>
                 <ul class="footer-links">
@@ -249,10 +249,10 @@
                 </ul>
             </div>
 
-            <!-- ── Divider ────────────────────────────────────────────────── -->
+            
             <div class="footer-divider footer-divider--v"></div>
 
-            <!-- ── Newsletter column ─────────────────────────────────────── -->
+            
             <div class="footer-col footer-col--wide">
                 <p class="footer-col-heading">Stay Fresh</p>
                 <p class="footer-newsletter-sub">New drops, restocks and wild flavors — straight to your inbox.</p>
@@ -264,7 +264,7 @@
 
         </div>
 
-        <!-- ── Bottom bar ─────────────────────────────────────────────────────── -->
+        
         <div class="footer-divider footer-divider--h"></div>
         <div class="footer-bottom">
             <p class="footer-legal"> © 2025 Thanda Beverages Pvt. Ltd. All rights reserved.</p>
@@ -278,7 +278,7 @@
         </div>
 
     </footer>
-    <!-- ── Cart Sidebar ────────────────────────────────────────────────────── -->
+    
     <aside class="cart-sidebar" id="cartSidebar">
         <div class="cart-sidebar-header">
             <h3 class="cart-sidebar-title">Your Cart</h3>
@@ -297,13 +297,13 @@
     </aside>
     <div class="cart-overlay" id="cartOverlay"></div>
 
-    <!-- Floating cart trigger — bottom right corner -->
+    
     <button class="floating-cart" id="floatingCart">
         <img src="Assets/ArnavThanda/ShoppingCart.svg" alt="Cart" class="floating-cart-icon" id="floatingCartIcon">
         <span class="floating-cart-badge" id="cartBadge">0</span>
     </button>
     <script>
-        // Scrollspy logic for navigation to follow sections
+        
         document.addEventListener("DOMContentLoaded", () => {
             const sections = document.querySelectorAll("section[id], header[id]");
             const navLinks = document.querySelectorAll(".navigation .nav-link");
@@ -326,7 +326,7 @@
                 });
             });
 
-            // Authentication state check
+            
             const authLink = document.getElementById("navAuthLink");
             const authToken = localStorage.getItem('authToken');
             const userData = localStorage.getItem('thandaUser');
@@ -355,44 +355,21 @@
             }
         });
 
-        /* ╔══════════════════════════════════════════════════════════════════════╗
-           ║                     ★  THEME FRAMEWORK  ★                          ║
-           ║  Edit THEMES below. One object per can, same order as <img> tags.  ║
-           ╚══════════════════════════════════════════════════════════════════════╝
         
-           THEME FIELDS
-           ─────────────────────────────────────────────────────────────────────
-           label        →  small pill text above the title  e.g. "No. 01 · Blueberry"
-           title        →  big heading. Use \n for a line break.
-           tagline      →  punchy one-liner under the title
-           description  →  body copy. Use \n for line breaks.
-           heroBg       →  any valid CSS background (gradient, colour, url…)
-           accentColor  →  colour for the label pill + tagline
-        
-           FRUIT FIELDS  (each item inside the fruits[] array)
-           ─────────────────────────────────────────────────────────────────────
-           src     →  path to your SVG file   e.g. "Assets/fruits/lemon.svg"
-           x       →  CSS left  position      e.g. "70%"  or "900px"
-           y       →  CSS top   position      e.g. "8%"   or "40px"
-           width   →  SVG display width       e.g. "180px"
-           rotate  →  starting tilt           e.g. "-20deg"
-           delay   →  stagger in milliseconds e.g. 0 / 80 / 160 …
-           opacity →  (optional) final opacity 0–1, default 1
-           ─────────────────────────────────────────────────────────────────────  */
 
         const TH_CARDS = [
 
-            // ── CARD 01 ──────────────────────────────────────────────────────────────
+            
             {
-                canSrc: "Assets/ArnavThanda/BlueberryC 1 2.svg",  // ← path to the can image
-                btnText: "Explore Blueberry",                         // ← button label
-                btnHref: "#",                                         // ← button link / route
+                canSrc: "Assets/ArnavThanda/BlueberryC 1 2.svg",  
+                btnText: "Explore Blueberry",                         
+                btnHref: "#",                                         
                 accent: "#5B9BD5",
                 name: "Blueberry Burst",
-                price: 120                                // ← button glow + hover tint
+                price: 120                                
             },
 
-            // ── CARD 02 ──────────────────────────────────────────────────────────────
+            
             {
                 canSrc: "Assets/ArnavThanda/Component 6 67.svg",
                 btnText: "Explore Blue Bolt",
@@ -402,7 +379,7 @@
                 price: 130
             },
 
-            // ── CARD 03 ──────────────────────────────────────────────────────────────
+            
             {
                 canSrc: "Assets/ArnavThanda/Component 666.svg",
                 btnText: "Explore Icy Tang",
@@ -412,7 +389,7 @@
                 price: 140
             },
 
-            // ── CARD 04 ──────────────────────────────────────────────────────────────
+            
             {
                 canSrc: "Assets/ArnavThanda/Component 668 4.svg",
                 btnText: "Explore Frost Mint",
@@ -422,7 +399,7 @@
                 price: 150
             },
 
-            // ── CARD 05 ──────────────────────────────────────────────────────────────
+            
             {
                 canSrc: "Assets/ArnavThanda/Green 555.svg",
                 btnText: "Explore Lemon Mist",
@@ -432,9 +409,9 @@
                 price: 160
             },
 
-            // ── CARD 06 ──────────────────────────────────────────────────────────────
+            
             {
-                canSrc: "Assets/ArnavThanda/Jaamun 7.svg",   // ← fill in
+                canSrc: "Assets/ArnavThanda/Jaamun 7.svg",   
                 btnText: "Explore Citrus Storm",
                 btnHref: "#",
                 accent: "#E63946",
@@ -443,9 +420,9 @@
 
             },
 
-            // ── CARD 07 ──────────────────────────────────────────────────────────────
+            
             {
-                canSrc: "Assets/ArnavThanda/Lemon 1 6.svg",   // ← fill in
+                canSrc: "Assets/ArnavThanda/Lemon 1 6.svg",   
                 btnText: "Explore Berry Rush",
                 btnHref: "#",
                 accent: "#9B5DE5",
@@ -453,9 +430,9 @@
                 price: 180
             },
 
-            // ── CARD 08 ──────────────────────────────────────────────────────────────
+            
             {
-                canSrc: "Assets/ArnavThanda/PremiumC 1 8.svg",   // ← fill in
+                canSrc: "Assets/ArnavThanda/PremiumC 1 8.svg",   
                 btnText: "Explore Arctic Lime",
                 btnHref: "#",
                 accent: "#06D6A0",
@@ -464,9 +441,9 @@
 
             },
 
-            // ── CARD 09 ──────────────────────────────────────────────────────────────
+            
             {
-                canSrc: "Assets/ArnavThanda/RassberrryC 1 2.svg",   // ← fill in
+                canSrc: "Assets/ArnavThanda/RassberrryC 1 2.svg",   
                 btnText: "Explore Mango Breeze",
                 btnHref: "#",
                 accent: "#FFB703",
@@ -474,10 +451,10 @@
                 price: 200
             },
 
-        ]; // ← DO NOT remove
+        ]; 
         const THEMES = [
 
-            // ── 1· BLUEBERRY ────────────────────────────────────────────────────
+            
             {
                 title: "Blue berry",
                 tagline: "A Cool Burst of Bold Blueberry Freshness",
@@ -489,7 +466,7 @@
                 ]
             },
 
-            // ── 1 · LEMON ────────────────────────────────────────────────────────
+            
             {
                 label: "No. 02 · Lemon",
                 title: "BLUE BOLT",
@@ -503,7 +480,7 @@
                 ]
             },
 
-            // ── 2 · ORange ──────────────────────────────────────────────────
+            
             {
                 label: "No. 03 · Mint Lime",
                 title: "ICY TANG",
@@ -521,7 +498,7 @@
                 ]
             },
 
-            // ── 3 Mints ·  ───────────────────────────────────────────────────────
+            
             {
                 label: "No. 04 · Orange",
                 title: "FROST MINT",
@@ -538,7 +515,7 @@
                 ]
             },
 
-            // ── 4 · PREMIUM ──────────────────────────────────────────────────────
+            
             {
                 label: "No. 05 · Premium",
                 title: "LEMON MIST",
@@ -553,14 +530,12 @@
                 ]
             },
 
-        ]; // ← DO NOT remove this line
+        ]; 
 
-        /* ════════════════════════════════════════════════════════════════════════
-           ENGINE — no need to edit below here
-           ════════════════════════════════════════════════════════════════════════ */
+        
         document.addEventListener("DOMContentLoaded", () => {
 
-            // DOM refs
+            
             const hero = document.getElementById("hero");
             const fruitLayer = document.getElementById("fruitLayer");
             const textLayer = document.getElementById("textLayer");
@@ -569,7 +544,7 @@
             const canTagline = document.getElementById("canTagline");
             const canDesc = document.getElementById("canDescription");
 
-            // ── Carousel ──────────────────────────────────────────────────────────
+            
             const cans = [...document.querySelectorAll(".can")];
             const N = cans.length;
             const RADIUS = 700;
@@ -598,7 +573,7 @@
 
             function renderCans(offset) {
                 readCanSize();
-                // renderCans(wheelOffset); 
+                
                 const hw = CAN_W / 2, hh = CAN_H / 2;
                 cans.forEach((can, i) => {
                     const angle = DISPLAY_ANG + offset + i * ANG_STEP;
@@ -612,17 +587,17 @@
                 return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
             }
 
-            // ── Theme engine ──────────────────────────────────────────────────────
+            
 
             function hideTheme() {
                 textLayer.classList.remove("theme-visible");
                 fruitLayer.querySelectorAll(".fruit-item").forEach(el => {
-                    // Freeze the current rendered opacity before killing the animation
+                    
                     const liveOpacity = parseFloat(window.getComputedStyle(el).opacity);
-                    el.style.opacity = liveOpacity;       // inline style takes over from animation
-                    el.classList.remove("fruit-in");       // cancel animation (won't snap — inline wins)
+                    el.style.opacity = liveOpacity;       
+                    el.classList.remove("fruit-in");       
                     el.style.transition = "opacity 0.35s ease";
-                    requestAnimationFrame(() => { el.style.opacity = "0"; });  // smooth exit
+                    requestAnimationFrame(() => { el.style.opacity = "0"; });  
                 });
             }
 
@@ -636,25 +611,25 @@
                 const t = THEMES[index];
                 if (!t) return;
 
-                // Hero background
+                
                 hero.style.background = t.heroBg;
 
-                // Accent colour
+                
                 textLayer.style.setProperty("--accent", t.accentColor);
 
-                // Text
+                
                 canLabel.textContent = t.label;
                 canTitle.innerHTML = t.title.replace(/\n/g, "<br>");
                 canTagline.textContent = t.tagline;
                 canDesc.innerHTML = t.description.replace(/\n/g, "<br>");
 
-                // Fruits — rebuild DOM
+                
                 fruitLayer.innerHTML = "";
                 t.fruits.forEach(f => {
                     const img = document.createElement("img");
                     img.src = f.src;
                     img.className = "fruit-item";
-                    // optional custom class
+                    
                     if (f.class) {
                         img.classList.add(f.class);
                     }
@@ -670,14 +645,14 @@
                 });
 
                 if (animate) {
-                    // Small delay so browser paints the hidden state first
+                    
                     requestAnimationFrame(() => requestAnimationFrame(showTheme));
                 } else {
                     showTheme();
                 }
             }
 
-            // ── Spin ──────────────────────────────────────────────────────────────
+            
             function go(dir) {
                 if (busy) return;
                 busy = true;
@@ -706,8 +681,8 @@
                         renderCans(wheelOffset);
                         applyTheme(activeIndex, true);
 
-                        // Hold the lock for the full theme animation:
-                        // fruit stagger delay + 700ms fly-in + 100ms buffer
+                        
+                        
                         const theme = THEMES[activeIndex];
                         const maxDelay = theme.fruits.length
                             ? Math.max(...theme.fruits.map(f => f.delay || 0))
@@ -717,7 +692,7 @@
                             if (pendingDir !== null) {
                                 const d = pendingDir;
                                 pendingDir = null;
-                                go(d);              // play the queued direction
+                                go(d);              
                             }
                         }, maxDelay + 800);
                     }
@@ -726,7 +701,7 @@
                 requestAnimationFrame(frame);
             }
 
-            // ── Boot ─────────────────────────────────────────────────────────────
+            
             renderCans(0);
             window.addEventListener("load", () => {
                 renderCans(0);
@@ -735,7 +710,7 @@
 
             document.querySelector(".left").addEventListener("click", () => go(-1));
             document.querySelector(".right").addEventListener("click", () => go(1));
-            // Converts "#FF8C42" → "255,140,66" for CSS rgba() use
+            
             function hexToRgb(hex) {
                 const r = parseInt(hex.slice(1, 3), 16);
                 const g = parseInt(hex.slice(3, 5), 16);
@@ -743,30 +718,30 @@
                 return `${r},${g},${b}`;
             }
 
-            // ── Thanda House Carousel ─────────────────────────────────────────────────
+            
             (function () {
                 const CLONE_COUNT = 4;
-                const TOTAL = TH_CARDS.length; // 9
+                const TOTAL = TH_CARDS.length; 
 
                 const track = document.getElementById("thTrack");
                 const viewport = track?.parentElement;
                 const dotBox = document.getElementById("thDots");
                 if (!track || !dotBox || !viewport) return;
 
-                // Build infinite loop buffer:
-                // [last clones] + [all real] + [first clones]
+                
+                
                 const allItems = [
                     ...TH_CARDS.slice(-CLONE_COUNT),
                     ...TH_CARDS,
                     ...TH_CARDS.slice(0, CLONE_COUNT)
                 ];
 
-                // ── Render cards ────────────────────────────────────────────────────────
+                
                 allItems.forEach((card, loopIdx) => {
                     const el = document.createElement("div");
                     el.className = "th-card";
                     el.style.setProperty("--accent-rgb", hexToRgb(card.accent));
-                    // Store data for cart use
+                    
                     el.dataset.name = card.name || card.btnText;
                     el.dataset.price = card.price || 0;
                     el.dataset.src = card.canSrc;
@@ -785,7 +760,7 @@
                     track.appendChild(el);
                 });
 
-                // ── Render dots (9 only, one per real card) ──────────────────────────────
+                
                 TH_CARDS.forEach((_, i) => {
                     const dot = document.createElement("span");
                     dot.className = "th-dot" + (i === 0 ? " active" : "");
@@ -794,12 +769,12 @@
 
                 const allDots = () => [...dotBox.querySelectorAll(".th-dot")];
 
-                // ── State ────────────────────────────────────────────────────────────────
+                
                 let cardsPerView = 3;
-                let idx = CLONE_COUNT; // points to first real card
+                let idx = CLONE_COUNT; 
                 let isAnimating = false;
 
-                // ── Helpers ──────────────────────────────────────────────────────────────
+                
                 function getCardsPerView() {
                     if (window.innerWidth <= 768) return 1;
                     if (window.innerWidth <= 1180) return 2;
@@ -821,7 +796,7 @@
                 }
 
                 function stepWidth() {
-                    // card's actual rendered width + the CSS gap
+                    
                     const card = track.children[0];
                     if (!card) return 0;
                     const gap = parseFloat(window.getComputedStyle(track).gap) || 24;
@@ -840,14 +815,14 @@
                     allDots().forEach((d, i) => d.classList.toggle("active", i === real));
                 }
 
-                // ── Infinite-loop snap on transition end ─────────────────────────────────
+                
                 track.addEventListener("transitionend", () => {
-                    // Slid too far right → jumped into tail clones → silently reset to real cards
+                    
                     if (idx >= CLONE_COUNT + TOTAL) {
                         idx -= TOTAL;
                         moveTo(idx, false);
                     }
-                    // Slid too far left → jumped into head clones → silently reset to real cards
+                    
                     if (idx < CLONE_COUNT) {
                         idx += TOTAL;
                         moveTo(idx, false);
@@ -855,7 +830,7 @@
                     isAnimating = false;
                 });
 
-                // ── Navigation ───────────────────────────────────────────────────────────
+                
                 function go(dir) {
                     if (isAnimating) return;
                     isAnimating = true;
@@ -867,7 +842,7 @@
                 document.getElementById("thPrev").addEventListener("click", () => go(-1));
                 document.getElementById("thNext").addEventListener("click", () => go(1));
 
-                // Dots are also clickable
+                
                 allDots().forEach((dot, i) => {
                     dot.addEventListener("click", () => {
                         if (isAnimating) return;
@@ -881,7 +856,7 @@
                     });
                 });
 
-                // ── Init ─────────────────────────────────────────────────────────────────
+                
                 window.addEventListener("load", () => {
                     layoutCards();
                     moveTo(idx, false);
@@ -892,9 +867,9 @@
                     moveTo(idx, false);
                 });
             })();
-            // ══════════════════════════════════════════════════════════════════════════
-            // NAV LINKS — smooth scroll
-            // ══════════════════════════════════════════════════════════════════════════
+            
+            
+            
             document.querySelectorAll(".nav-link").forEach(link => {
                 link.addEventListener("click", e => {
                     const href = link.getAttribute("href");
@@ -906,11 +881,11 @@
                 });
             });
 
-            // ══════════════════════════════════════════════════════════════════════════
-            // CART STATE
-            // ══════════════════════════════════════════════════════════════════════════
+            
+            
+            
             const CART_STORAGE_KEY = "thandaCartState";
-            const cartState = loadCartState(); // [{ name, price, src, qty }]
+            const cartState = loadCartState(); 
 
             function loadCartState() {
                 try {
@@ -948,7 +923,7 @@
             function openCart() { cartSidebar.classList.add("open"); cartOverlay.classList.add("visible"); }
             function closeCart() { cartSidebar.classList.remove("open"); cartOverlay.classList.remove("visible"); }
 
-            // WITH:
+            
             document.getElementById("floatingCart").addEventListener("click", openCart);
             document.getElementById("navCartLink") &&
                 document.getElementById("navCartLink").addEventListener("click", e => { e.preventDefault(); openCart(); }); document.getElementById("cartCloseBtn").addEventListener("click", closeCart);
@@ -964,7 +939,7 @@
                 toast.className = `custom-toast ${type}`;
                 toast.textContent = msg;
 
-                // Trigger reflow
+                
                 void toast.offsetWidth;
                 toast.classList.add('show');
 
@@ -985,10 +960,10 @@
                         return;
                     }
 
-                    // Save cart for checkout and persistence
+                    
                     persistCartState();
 
-                    // Redirect to checkout page
+                    
                     window.location.href = 'checkout.html';
                 });
             }
@@ -996,25 +971,25 @@
             function renderCart() {
                 persistCartState();
 
-                // Badge
+                
                 const total = cartState.reduce((s, i) => s + i.qty, 0);
                 cartBadge.textContent = total;
-                // Bump animation
+                
                 cartBadge.classList.remove("bump");
                 void cartBadge.offsetWidth;
                 cartBadge.classList.add("bump");
                 setTimeout(() => cartBadge.classList.remove("bump"), 300);
 
-                // Empty state
+                
                 cartEmptyMsg.style.display = cartState.length ? "none" : "block";
                 cartFooter.style.display = cartState.length ? "flex" : "none";
 
-                // Total
+                
                 const rupees = cartState.reduce((s, i) => s + i.price * i.qty, 0);
                 cartTotalEl.textContent = `₹${rupees}`;
 
-                // Rebuild items (keep existing nodes for items that didn't change qty)
-                // Simple approach: clear and re-render
+                
+                
                 [...cartItemsList.querySelectorAll(".cart-item")].forEach(el => el.remove());
 
                 cartState.forEach((item, idx) => {
@@ -1035,7 +1010,7 @@
                     cartItemsList.appendChild(row);
                 });
 
-                // Qty button events
+                
                 cartItemsList.querySelectorAll(".cart-qty-btn").forEach(btn => {
                     btn.addEventListener("click", () => {
                         const i = parseInt(btn.dataset.idx);
@@ -1051,20 +1026,20 @@
                 });
             }
 
-            // ══════════════════════════════════════════════════════════════════════════
-            // FLY-TO-CART ANIMATION
-            // ══════════════════════════════════════════════════════════════════════════
-            // REPLACE the old flyToCart with this:
+            
+            
+            
+            
             function flyToCart(canEl) {
                 const canRect = canEl.getBoundingClientRect();
                 const cartEl = document.getElementById("floatingCart");
                 const cartRect = cartEl.getBoundingClientRect();
 
-                // Cart centre
+                
                 const cartCX = cartRect.left + cartRect.width / 2;
                 const cartCY = cartRect.top + cartRect.height / 2;
 
-                // Clone starts at can's exact screen position
+                
                 const clone = document.createElement("img");
                 clone.src = canEl.src;
                 clone.className = "fly-can";
@@ -1077,18 +1052,18 @@
     `;
                 document.body.appendChild(clone);
 
-                // Delta to get clone's centre to overlap cart's centre
+                
                 const deltaX = cartCX - (canRect.left + canRect.width / 2);
                 const deltaY = cartCY - (canRect.top + canRect.height / 2);
 
-                // Phase 1 — spring up 100px
+                
                 clone.animate([
                     { transform: "translateY(0) scale(1)", opacity: 1 },
                     { transform: "translateY(-100px) scale(1.1)", opacity: 1 }
                 ], { duration: 300, easing: "cubic-bezier(0.34,1.2,0.64,1)", fill: "forwards" })
                     .onfinish = () => {
 
-                        // Phase 2 — fly to cart and shrink exactly onto it
+                        
                         clone.animate([
                             { transform: `translateY(-100px) scale(1.1)`, opacity: 1 },
                             { transform: `translate(${deltaX}px, ${deltaY + 100}px) scale(0.25)`, opacity: 0.6 },
@@ -1097,9 +1072,9 @@
                             .onfinish = () => {
                                 clone.remove();
 
-                                // Cart bumps — grows then snaps back
+                                
                                 cartEl.classList.remove("bumping");
-                                void cartEl.offsetWidth; // reflow to retrigger
+                                void cartEl.offsetWidth; 
                                 cartEl.classList.add("bumping");
                                 cartEl.addEventListener("animationend", () => {
                                     cartEl.classList.remove("bumping");
@@ -1108,10 +1083,10 @@
                     };
             }
 
-            // ══════════════════════════════════════════════════════════════════════════
-            // WIRE UP ADD TO CART ON ALL CARDS
-            // Uses event delegation on the track since cards are dynamically rendered
-            // ══════════════════════════════════════════════════════════════════════════
+            
+            
+            
+            
             document.getElementById("thTrack").addEventListener("click", e => {
                 const atcBtn = e.target.closest(".th-card-atc");
                 if (!atcBtn) return;
@@ -1122,7 +1097,7 @@
                 const price = parseInt(card.dataset.price) || 0;
                 const src = card.dataset.src;
 
-                // Add / increment in cart state
+                
                 const existing = cartState.find(i => i.name === name);
                 if (existing) {
                     existing.qty++;
@@ -1132,37 +1107,37 @@
 
                 renderCart();
 
-                // Fly animation
+                
                 flyToCart(canImg);
             });
 
-            // Restore persisted cart on first load
+            
             renderCart();
 
-            // ════════════════════════════════════════════════════════════════=═════════
-            // CONTACT POPUPS (already in your code — keep as-is below this line)
-            // ══════════════════════════════════════════════════════════════════════════
-            // ── Contact popups ────────────────────────────────────────────────────────
+            
+            
+            
+            
 
             document.querySelectorAll(".contact-item").forEach(item => {
 
-                // Row click — open this popup, close all others
+                
                 item.addEventListener("click", (e) => {
-                    // Don't re-close if the click was on the ✕ button (handled below)
+                    
                     if (e.target.classList.contains("contact-popup-close")) return;
 
                     const isOpen = item.classList.contains("popup-open");
 
-                    // Close every popup first
+                    
                     document.querySelectorAll(".contact-item").forEach(i =>
                         i.classList.remove("popup-open")
                     );
 
-                    // If it wasn't already open, open it
+                    
                     if (!isOpen) item.classList.add("popup-open");
                 });
 
-                // ✕ button — close just this popup
+                
                 const closeBtn = item.querySelector(".contact-popup-close");
                 if (closeBtn) {
                     closeBtn.addEventListener("click", (e) => {
@@ -1172,7 +1147,7 @@
                 }
             });
 
-            // Click anywhere outside contact items → close all popups
+            
             document.addEventListener("click", (e) => {
                 if (!e.target.closest(".contact-item")) {
                     document.querySelectorAll(".contact-item").forEach(i =>
