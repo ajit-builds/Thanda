@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: thanda-fox
+    runtime: java
+    plan: free
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/thanda-fox-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: APP_JWT_SECRET
+        generateValue: true
+      - key: APP_JWT_EXPIRATION_MS
+        value: "86400000"
+      - key: SPRING_H2_CONSOLE_ENABLED
+        value: "false"
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: "update"
+      - key: APP_CORS_ALLOWED_ORIGIN_PATTERNS
+        value: "http://localhost:*,http://127.0.0.1:*"

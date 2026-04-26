@@ -60,7 +60,8 @@ body {
 /* ── Hero ────────────────────────────────────────────────────────────────── */
 .hero {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     background: linear-gradient(to bottom, #1BD8C8, #00993B);
     position: relative;
     overflow: hidden;
@@ -2216,76 +2217,21 @@ li {
     box-shadow: 0 0 22px rgba(27, 216, 200, 0.50);
 }
 
-@media (max-width: 1366px) {
+
+@media (min-width: 900px) and (max-width: 1024px) and (min-height:600px) and (max-height: 768px) {
     .can {
-        transform: translate(20px, 40px);
-    }
-}
-
-@media (max-width: 1280px) {
-    .can {
-        transform: translate(90px, 80px);
-    }
-}
-
-@media (min-width: 1367px) and (max-width: 1440px) {
-    .can {
-        transform: translate(1.2%, -4%);
-        width: 1400px;
-    }
-}
-
-@media (min-width: 1440px) and (max-width: 1536px) {
-    .can {
-        transform: translate(-2%, 0%);
-        width: 1500px;
+        width: 80vw;
+        transform: translate(30%, 20%) !important;
     }
 
-    .smoke {
-        width: 1536px !important;
+    .blueberry-item-fruit {
+        width: 600px !important;
+        transform: translate(2%, 28%) rotate(-8deg) !important;
     }
 
-
-}
-
-@media (min-width: 1536px) and (max-width: 1600px) {
-    .fruit-item {
-        transform: translate(8%, 10%) !important;
-
-    }
-
-    .smoke {
-        width: 1800px !important;
-        transform: translate(-8%, -10%) !important;
-    }
-
-    .mintcan {
-        transform: translate(0.8%, 2%) !important;
-    }
-
-    .can {
-        width: 1400px;
-    }
-
-    .icy-tang {
-        transform: translate(8%, 7.5%) scale(0.95) !important;
-
-
-    }
-
-    .orangecan {
-        transform: translate(-2%, -1%) !important;
-    }
-
-    .boltcan {
-        transform: translate(3%, -5%) !important;
-    }
-    .blueberry{
-        transform: scale(1) translate(13%,1%) !important;
-    }
-
-    .bluebolt{
-        transform: translate(4%,2%)  scale(1.1) !important;
-    }
+    .blueberry-item-water {
+        width: 600px !important;
+        transform: translate(8%, 20%) rotate(-20deg) !important;
+w
 
 }

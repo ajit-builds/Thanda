@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanda - Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .signup-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, #1BD8C8, #00993B);
+            padding-top: 60px;
+            /* offset for nav */
+        }
+
+        .signup-card {
+            background: linear-gradient(135deg, rgba(217, 217, 217, 0.55) 0%, rgba(115, 115, 115, 0.45) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(18px) saturate(130%);
+            -webkit-backdrop-filter: blur(18px) saturate(130%);
+            border-radius: 40px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+            text-align: center;
+        }
+
+        .signup-title {
+            font-family: "Metal Mania", system-ui;
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .signup-subtitle {
+            font-family: "DM Sans", sans-serif;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-family: "DM Sans", sans-serif;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-family: "DM Sans", sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .input-group input:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            background: #fff;
+            color: #00993B;
+            font-family: "DM Sans", sans-serif;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+
+        .message {
+            margin-top: 1.5rem;
+            font-family: "DM Sans", sans-serif;
+            font-size: 0.95rem;
+            color: #fff;
+            display: none;
+        }
+
+        .message.success {
+            color: #4DFFA0;
+        }
+
+        .message.error {
+            color: #FF7A1A;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navigation">
+        <a href="index.html#hero" class="nav-link">Home</a>
+        <a href="index.html#thandaHouse" class="nav-link">Beverages</a>
+        <a href="index.html#legacy" class="nav-link">Legacy</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+        <a href="signup.html" class="nav-link">Sign Up</a>
+        <a href="#" class="nav-link" id="navCartLink">My Cart</a>
+    </nav>
+
+    <section class="signup-section">
+        <div class="signup-card">
+            <h1 class="signup-title">Join Thanda</h1>
+            <p class="signup-subtitle">Experience Pure Wild Intensity.</p>
+
+            <form id="signupForm">
+                <div class="input-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div style="position: relative;">
+                        <input type="password" id="password" placeholder="Create a password" required
+                            autocomplete="new-password" style="padding-right: 40px;">
+                        <span class="toggle-password"
+                            style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #fff; opacity: 0.7;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+            <div id="statusMessage" class="message"></div>
+            <p class="switch-auth"
+                style="margin-top: 1.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: #fff;">Already
+                have an account? <a href="login.html"
+                    style="color: #4DFFA0; text-decoration: none; font-weight: bold;">Log in</a></p>
+        </div>
+    </section>
+
+    <script>
+        const togglePassword = document.querySelector('.toggle-password');
+        const passwordInput = document.getElementById('password');
+        if (togglePassword && passwordInput) {
+            togglePassword.addEventListener('click', function () {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.style.opacity = type === 'text' ? '1' : '0.7';
+            });
+        }
+
+        function getSignupEndpoint() {
+            const path = '/api/auth/register';
+            const origin = window.location.origin || '';
+            const host = window.location.hostname;
+            const port = window.location.port;
+            const isLocalDevHost = host === 'localhost' || host === '127.0.0.1';
+
+            if (window.location.protocol === 'file:') {
+                return `http://localhost:8080${path}`;
+            }
+
+            // Live Server usually runs on 5500/5501; backend API is on 8080.
+            if (isLocalDevHost && port && port !== '8080') {
+                return `http://${host}:8080${path}`;
+            }
+
+            return `${origin}${path}`;
+        }
+
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const messageEl = document.getElementById('statusMessage');
+            const submitBtn = document.querySelector('.signup-btn');
+
+            try {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Signing Up...';
+
+                const response = await fetch(getSignupEndpoint(), {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                let data = {};
+                try {
+                    data = await response.json();
+                } catch (_) {
+                    data = {};
+                }
+
+                messageEl.style.display = 'block';
+                if (response.ok) {
+                    messageEl.textContent = 'Registration successful! Redirecting to login...';
+                    messageEl.className = 'message success';
+                    document.getElementById('signupForm').reset();
+
+                    // Persist auth and profile data used by homepage/profile page.
+                    if (data.token) {
+                        localStorage.setItem('authToken', data.token);
+                    }
+                    localStorage.setItem('userEmail', email);
+                    localStorage.setItem('thandaUser', JSON.stringify({
+                        name,
+                        email,
+                        token: data.token || null
+                    }));
+
+                    // Redirect to home after 1.5 seconds
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } else {
+                    messageEl.textContent = data.message || `Registration failed`;
+                    messageEl.className = 'message error';
+                }
+            } catch (error) {
+                messageEl.style.display = 'block';
+                messageEl.textContent = 'Network error. Please try again.';
+                messageEl.className = 'message error';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Sign Up';
+            }
+        });
+    </script>
+</body>
+
+</html>
